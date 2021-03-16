@@ -1,0 +1,73 @@
+<form novalidate #form="ngForm" (submit)=onSubmit(form) class="jumbotron py-3">
+    <input type="hidden" name="Id [value]=service.formData.Id">
+
+    <div class="form-group">
+        <label>FIRST NAME</label>
+        <input type="text" class="form-control form-control" placeholder="First name" name="FirstName"
+            #FirstName="ngModel" [(ngModel)]="service.formData.FirstName" required
+            [class.invalid]="FirstName.invalid && FirstName.touched">
+    </div>
+    <div class="form-group">
+        <label>LAST NAME</label>
+        <input type="text" class="form-control form-control" placeholder="Last name" name="LastName" #LastName="ngModel"
+            [(ngModel)]="service.formData.LastName" required [class.invalid]="FirstName.invalid && FirstName.touched">
+    </div>
+    <div class="form-group">
+        <label>DATE OF BIRTH</label>
+        <input type="dd/MM/yyyy" class="form-control form-control" placeholder="YYYY/MM/DD" name="DateOfBirth"
+            #DateOfBirth="ngModel" [(ngModel)]="service.formData.DateOfBirth" required
+            [class.invalid]="FirstName.invalid && FirstName.touched">
+    </div>
+    <div class="form-group">
+        <label>TELEPHONE NUMBER</label>
+        <input type="text" class="form-control form-control" placeholder="Telephone Number" name="TPNo" #TPNo="ngModel"
+            [(ngModel)]="service.formData.TPNo" required [class.invalid]="FirstName.invalid && FirstName.touched">
+    </div>
+    <div class="form-group">
+        <label>EMAIL ADDRESS</label>
+        <input type="text" class="form-control form-control" placeholder="Email" name="Email" #Email="ngModel"
+            [(ngModel)]="service.formData.Email" required [class.invalid]="FirstName.invalid && FirstName.touched">
+    </div>
+    <div class="form-group">
+        <label>MARITAL STATUS</label>
+        <div class="form-check">
+            <div class="row">
+                <div class="col-4">
+                    <input type="radio" name="status" value="Single"
+                        [checked]="service.formData.MaritalStatus === false" (change)="cc($event.target.value)">
+                    <label class="form-check-label">Single</label>
+                </div>
+                <div class="col-4">
+                    <input type="radio" name="status" value="Married"
+                        [checked]="service.formData.MaritalStatus === true" (change)="cc($event.target.value)">
+                    <label class="form-check-label">Married</label>
+                </div>
+                <div class="col-4"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>SELECT YOUR DEPARTMENT</label>
+        <app-dropdown></app-dropdown>
+    </div>
+
+    <div class="form-group">
+        <label>CITY</label>
+        <input type="text" class="form-control form-control" placeholder="City" name="City" #City="ngModel"
+            [(ngModel)]="service.formData.City" required [class.invalid]="FirstName.invalid && FirstName.touched">
+    </div>
+    <div class="form-group">
+        <label>REMARK</label>
+        <input type="text" class="form-control form-control" placeholder="Remark" name="Remark" #Remark="ngModel"
+            [(ngModel)]="service.formData.Remark" required [class.invalid]="FirstName.invalid && FirstName.touched">
+    </div>
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">SUBMIT</button>
+    </div>
+
+
+</form>

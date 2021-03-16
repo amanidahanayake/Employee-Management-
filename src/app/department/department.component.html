@@ -1,0 +1,47 @@
+<h1 class="jumbotron py-4 display-5 text-center">Employee Department</h1>
+<app-navbar></app-navbar>
+
+<div class="row container">
+    <div class="col-6">
+        <form novalidate #form="ngForm" (submit)=onSubmittwo(form) class="jumbotron py-3">
+            <input type="hidden" name="DepId [value]=service.formData.DepId">
+
+            <div class="form-group">
+                <label>DEPARTMENT</label>
+                <input type="text" class="form-control" placeholder="Department Name" name="DepName" #DepName="ngModel"
+                    [(ngModel)]="service.formData.DepName" required
+                    [class.invalid]="DepName.invalid && DepName.touched">
+            </div>
+            <div class="form-group">
+                <label>PHONE NUMBER</label>
+                <input type="text" class="form-control" placeholder="Phone Number" name="PhoneNo" #PhoneNo="ngModel"
+                    [(ngModel)]="service.formData.PhoneNo" required
+                    [class.invalid]="PhoneNo.invalid && PhoneNo.touched">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add Department</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-6">
+        <span></span>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead class="thead-light">
+                <tr>
+                    <th>Department Name</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pd of service.list">
+                    <td (click)="populateForm(pd)">{{pd.DepName}}</td>
+                    <td (click)="populateForm(pd)">{{pd.PhoneNo}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.DepId)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
